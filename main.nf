@@ -1,11 +1,11 @@
 nextflow.enable.dsl=2
 
 // Define parameters
-params.samples_dir = "./samples" // Main directory with sample folders
+params.samples_dir = "/g/strcombio/fsupek_home/mmunteanu/LINX/Samples" // Main directory with sample folders
 params.samples_list = "./samples_to_plot.txt" // File with the list of samples to process
-params.ensembl_cache_dir = "./ensembl_cache" // Directory with Ensembl cache
-params.output_dir = "./output" // Output directory for plots
-params.singularity_image = "./linx_circos_r_container.sif" // Path to the Singularity image
+params.ensembl_cache_dir = "/g/strcombio/fsupek_home/mmunteanu/LINX/HMFtools-Resources_dna_pipeline_v5_34_37_hmf_dna_pipeline_resources.37_v5.34/v5_34/ref/37/common/ensembl_data" // Directory with Ensembl cache
+params.output_dir = "/g/strcombio/fsupek_home/mmunteanu/LINX/output" // Output directory for plots
+params.singularity_image = "/g/strcombio/fsupek_home/mmunteanu/linx_circos_r_container.sif" // Path to the Singularity image
 
 // Workflow definition
 workflow {
