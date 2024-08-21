@@ -10,10 +10,8 @@ params.threads = "8"
 
 // Workflow
 workflow {
-    main {
-        samples = Channel.fromPath(samples_file, checkIfExists: true).splitCsv(header: true, sep: '\t', strip: true).map { row -> [ row.sample, path(row.input) ] } 
-        linx_circos_plot(samples)
-    }
+    samples = Channel.fromPath(samples_file, checkIfExists: true).splitCsv(header: true, sep: '\t', strip: true).map { row -> [ row.sample, path(row.input) ] } 
+    linx_circos_plot(samples)
 }
 
 // Process
