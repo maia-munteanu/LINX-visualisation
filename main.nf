@@ -10,9 +10,6 @@ workflow {
 
 process linx_circos_plot {
     tag { sample }
-    cpus = params.threads
-    memory = 5.GB
-    time = 6.h
 
     input:
     tuple val(sample), path(input)
