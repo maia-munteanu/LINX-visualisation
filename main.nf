@@ -1,25 +1,18 @@
-nextflow.enable.dsl=2
+nextflow.enable.dsl = 2
 
-// Parameters
-params.samples_file = "/g/strcombio/fsupek_home/mmunteanu/LINX/samples.txt" // File with the list of samples to process
-params.output_directory = "/g/strcombio/fsupek_home/mmunteanu/LINX/output"
-params.ensembl_cache_dir = "/g/strcombio/fsupek_home/mmunteanu/LINX/HMFtools-Resources_dna_pipeline_v5_34_37_hmf_dna_pipeline_resources.37_v5.34/v5_34/ref/37/common/ensembl_data" // Directory with Ensembl cache
-params.singularity_image = "/g/strcombio/fsupek_home/mmunteanu/linx_circos_r_container.sif" // Path to the Singularity image
-params.ref = "37"
-params.threads = "8"
-
-// Workflow
 workflow {
-    samples = Channel.fromPath(params.samples_file, checkIfExists: true).splitCsv(header: true, sep: '\t', strip: true).map { row -> [ row.sample, file(row.input) ] } 
+    samples = Channel.fromPath(params.samples_file, checkIfExists: true)
+        .splitCsv(header: true, sep: '\t', strip: true)
+        .map { row -> [ row.sample, file(row.input) ] }
+    
     linx_circos_plot(samples)
 }
 
-// Process
 process linx_circos_plot {
     tag { sample }
     cpus = params.threads
-    memory { 5.GB }
-    time = { 6.h }
+    memory = 5.GB
+    time = 6.h
 
     input:
     tuple val(sample), path(input)
@@ -30,7 +23,6 @@ process linx_circos_plot {
 
     publishDir "${params.output_directory}/${sample}", mode: 'move', pattern: 'plot'
     publishDir "${params.output_directory}/${sample}", mode: 'move', pattern: 'data'
-
 
     script:
     """
