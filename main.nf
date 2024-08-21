@@ -20,7 +20,7 @@ process linx_circos_plot {
     container params.singularity_image
 
     input:
-    tuple val(sample), path(input) from samples
+    tuple val(sample), path(input)
 
     output:
     path "plot" into plot_output
