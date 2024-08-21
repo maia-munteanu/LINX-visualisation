@@ -17,7 +17,9 @@ workflow {
 // Process
 process linx_circos_plot {
     tag { sample }
-    container params.singularity_image
+    cpus = params.threads
+    memory { 5.GB }
+    time = { 6.h }
 
     input:
     tuple val(sample), path(input)
