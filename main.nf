@@ -23,8 +23,8 @@ process linx_circos_plot {
     tuple val(sample), path(input)
 
     output:
-    path "plot" into plot_output
-    path "data" into data_output
+    path "plot"
+    path "data"
 
     publishDir "${params.output_directory}/${sample}", mode: 'move', pattern: 'plot'
     publishDir "${params.output_directory}/${sample}", mode: 'move', pattern: 'data'
