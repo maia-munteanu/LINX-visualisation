@@ -21,6 +21,17 @@ process linx_circos_plot {
     publishDir "${params.output_directory}/${sample}", mode: 'move', pattern: 'plot'
     publishDir "${params.output_directory}/${sample}", mode: 'move', pattern: 'data'
 
+    beforeScript:
+    """
+    export NXF_TEMP=`pwd`/tmp
+    mkdir -p \$NXF_TEMP
+    """
+
+    afterScript:
+    """
+    rm -rf \$NXF_TEMP
+    """
+
     script:
     """
     java -cp /opt/linx/linx_v1.25.jar com.hartwig.hmftools.linx.visualiser.SvVisualiser \
