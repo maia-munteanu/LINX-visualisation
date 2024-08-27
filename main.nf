@@ -25,7 +25,7 @@ process linx_circos_plot {
     """
     mkdir -p tmp
     export TMPDIR=\$(pwd)/tmp
-    java -cp /opt/linx/linx_v1.25.jar com.hartwig.hmftools.linx.visualiser.SvVisualiser \
+    java -Djava.io.tmpdir=./tmp -cp /opt/linx/linx_v1.25.jar com.hartwig.hmftools.linx.visualiser.SvVisualiser \
         -sample ${sample} \
         -vis_file_dir ${input} \
         -circos /usr/local/circos-0.69-9/bin/circos \
